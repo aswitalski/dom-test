@@ -43,6 +43,10 @@
         this.array.splice(index, 1);
       }
     }
+
+    get length() {
+      return this.array.length;
+    }
   };
 
   global.Element = class extends Node {

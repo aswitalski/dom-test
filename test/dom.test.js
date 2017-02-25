@@ -35,6 +35,36 @@ describe('document', () => {
 
 describe('Element', () => {
 
+  describe('class list', () => {
+
+    it('adds a class name', () => {
+
+      // given
+      const element = document.createElement('span');
+
+      // when
+      element.classList.add('test');
+
+      // then
+      assert.equal(element.classList.length, 1);
+      assert.deepEqual(Array.from(element.classList), ['test']);
+    });
+
+    it('removes a class name', () => {
+
+      // given
+      const element = document.createElement('span');
+
+      // when
+      element.classList.add('test');
+      element.classList.remove('test');
+
+      // then
+      assert.equal(element.classList.length, 0);
+      assert.deepEqual(Array.from(element.classList), []);
+    });
+  });
+
   describe('dataset', () => {
 
     it('adds a data attribute', () => {
@@ -49,6 +79,7 @@ describe('Element', () => {
       assert.equal(element.dataset['someName'], '666')
       assert.equal(element.getAttribute('data-some-name'), '666');
       assert.equal(element.attributes['data-some-name'], '666');
+      assert.equal(element.attributes.length, 1);
     });
 
     it('replaces a data attribute', () => {
@@ -60,6 +91,7 @@ describe('Element', () => {
       assert.equal(element.dataset['reactorId'], 'id')
       assert.equal(element.getAttribute('data-reactor-id'), 'id');
       assert.equal(element.attributes['data-reactor-id'], 'id');
+      assert.equal(element.attributes.length, 1);
 
       // when
       element.dataset.reactorId = true;
@@ -68,6 +100,7 @@ describe('Element', () => {
       assert.equal(element.dataset['reactorId'], 'true')
       assert.equal(element.getAttribute('data-reactor-id'), 'true');
       assert.equal(element.attributes['data-reactor-id'], 'true');
+      assert.equal(element.attributes.length, 1);
     });
 
     it('removes a data attribute', () => {
@@ -86,6 +119,7 @@ describe('Element', () => {
       assert.equal(element.dataset['attr'], undefined)
       assert.equal(element.getAttribute('data-reactor-id'), undefined);
       assert.equal(element.attributes['data-attr'], undefined);
+      assert.equal(element.attributes.length, 0);
     });
   });
 
