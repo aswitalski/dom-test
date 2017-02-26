@@ -2,8 +2,15 @@
   global.Node = class {
 
     constructor() {
+      if (this.constructor === Node) {
+        throw new TypeError('Illegal constructor');
+      }
       this.parentNode = null;
       this.childNodes = [];
+    }
+
+    hasChildNodes() {
+      return this.childNodes.length > 0;
     }
 
     remove() {
@@ -26,7 +33,7 @@
 
     constructor() {
       this.array = [];
-      this[Symbol.iterator] = function* () {
+      this[Symbol.iterator] = function*() {
         for (const item of this.array) {
           yield item;
         }

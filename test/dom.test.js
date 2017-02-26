@@ -33,6 +33,26 @@ describe('document', () => {
   });
 });
 
+describe('Node', () => {
+
+  it('cannot be instantiated directly', () => {
+    assert.throws(() => {
+      new Node();
+    }, TypeError, 'Illegal constructor');
+  });
+
+  it('has no child nodes by default', () => {
+
+    // given
+    const element = document.createElement('div');
+    const comment = document.createComment('comment');
+
+    // then
+    assert(!element.hasChildNodes());
+    assert(!comment.hasChildNodes());
+  });
+});
+
 describe('Element', () => {
 
   describe('class list', () => {
@@ -262,6 +282,7 @@ describe('Element', () => {
       parent.appendChild(element);
 
       // then
+      assert(parent.hasChildNodes());
       assert.deepEqual(parent.childNodes, [
         element
       ]);
@@ -278,6 +299,7 @@ describe('Element', () => {
       parent.appendChild(comment);
 
       // then
+      assert(parent.hasChildNodes());
       assert.deepEqual(parent.childNodes, [
         comment
       ]);
@@ -301,6 +323,7 @@ describe('Element', () => {
       parent.insertBefore(element, comment);
 
       // then
+      assert(parent.hasChildNodes());
       assert.equal(parent.childNodes[0], element);
       assert.equal(parent.childNodes[1], comment);
       assert.equal(element.parentNode, parent);
@@ -321,6 +344,7 @@ describe('Element', () => {
       parent.insertBefore(comment, link);
 
       // then
+      assert(parent.hasChildNodes());
       assert.equal(parent.childNodes[0], span);
       assert.equal(parent.childNodes[1], comment);
       assert.equal(parent.childNodes[2], link);
@@ -339,6 +363,7 @@ describe('Element', () => {
       parent.insertBefore(element, comment);
 
       // then
+      assert(parent.hasChildNodes());
       assert.equal(parent.childNodes[0], element);
       assert.equal(element.parentNode, parent);
     });
@@ -356,6 +381,7 @@ describe('Element', () => {
       parent.insertBefore(comment, null);
 
       // then
+      assert(parent.hasChildNodes());
       assert.equal(parent.childNodes[0], span);
       assert.equal(parent.childNodes[1], comment);
       assert.equal(comment.parentNode, parent);
@@ -375,6 +401,7 @@ describe('Element', () => {
       element.remove();
 
       // then
+      assert(!parent.hasChildNodes());
       assert.deepEqual(parent.childNodes, []);
       assert.equal(element.parentNode, null);
     });
@@ -393,6 +420,7 @@ describe('Element', () => {
       comment.remove();
 
       // then
+      assert(parent.hasChildNodes());
       assert.deepEqual(parent.childNodes, [element]);
       assert.equal(comment.parentNode, null);
     });
