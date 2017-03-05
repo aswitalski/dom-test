@@ -1,3 +1,4 @@
+--require ./test/config/init.js
 --colors
 --sort
 --reporter spec
