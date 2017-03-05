@@ -41,6 +41,7 @@ class ProxyUtils {
       const attr = new Attr(getAttrName());
       attr.value = value + '';
       attributes.setNamedItem(attr);
+      return true;
     }
   }
 
@@ -53,6 +54,7 @@ class ProxyUtils {
       target.map_.delete(prop);
       const attr = getAttrName(prop);
       attributes.removeNamedItem(attr);
+      return true;
     }
   }
 }

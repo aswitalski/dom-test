@@ -34,6 +34,7 @@ class CSSStyleDeclaration extends AbstractMap {
         } else {
           target[name] = value;
         }
+        return true;
       },
     });
   }

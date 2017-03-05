@@ -45,6 +45,24 @@ describe('DOM String Map', () => {
     assert.equal(domStringMap.attributes_, attributes);
   });
 
+  it('deletes the prefixed attribute', () => {
+
+    // given
+    const domStringMap = createDOMStringMap();
+    domStringMap.customName = 'custom value';
+
+    // then
+    assert(attributes.getNamedItem('data-custom-name'));
+    assert.equal(attributes.length, 1);
+
+    // when
+    delete domStringMap.customName;
+
+    // then
+    assert.equal(attributes.getNamedItem('data-custom-name'), null);
+    assert.equal(attributes.length, 0);
+  });
+
   it('throws an exception for symbol value', () => {
 
     // given
