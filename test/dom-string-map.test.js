@@ -28,6 +28,8 @@ describe('DOM String Map', () => {
     assert.equal(domStringMap.map_.get('boolean'), 'true');
     assert.equal(domStringMap.map_.get('number'), '5');
     assert.equal(domStringMap.map_.get('string'), 'string');
+
+    assert.equal(domStringMap.length_, 5);
   });
 
   it('sets the prefixed attribute', () => {

@@ -8,6 +8,36 @@ describe('Node', () => {
     }, TypeError, 'Illegal constructor');
   });
 
+  describe('remove', () => {
+
+    it('removes the node from the parent', () => {
+
+      // given
+      const node = document.createTextNode('text');
+      const element = document.createElement('span');
+      element.appendChild(node);
+
+      // when
+      node.remove();
+
+      // then
+      assert.equal(element.hasChildNodes(), false);
+      assert.equal(node.parentNode, null);
+    });
+
+    it('ignores the call if not attached', () => {
+
+      // given
+      const node = document.createComment('comment');
+
+      // when
+      node.remove();
+
+      // then
+      assert.equal(node.parentNode, null);
+    })
+  });
+
   describe('parent node', () => {
 
     it('returns parent node', () => {

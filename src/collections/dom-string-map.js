@@ -13,10 +13,12 @@ class DOMStringMap {
     this[mapKey] = new Map();
     return new Proxy(this, {
       get: (target, prop) => {
-        if (prop === 'map_' || prop === 'attributes_') {
-          return target[prop];
-        } else {
-          return target.map_.get(prop);
+        if (prop.constructor === String) {
+          if (prop.endsWith('_')) {
+            return target[prop];
+          } else {
+            return target.map_.get(prop);
+          }
         }
       },
       set: ProxyUtils.setDataAttribute(attributes),
@@ -30,6 +32,10 @@ class DOMStringMap {
 
   get attributes_() {
     return this[attrsKey];
+  }
+
+  get length_() {
+    return this.map_.size;
   }
 }
 

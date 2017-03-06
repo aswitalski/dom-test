@@ -7,6 +7,12 @@ class Node {
     this.parentNode = null;
   }
 
+  remove() {
+    if (this.parentNode) {
+      this.parentNode.removeChild(this);
+    }
+  }
+
   get parentElement() {
     if (this.parentNode && this.parentNode.constructor === Element) {
       return this.parentNode;

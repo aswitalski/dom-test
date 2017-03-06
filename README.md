@@ -41,6 +41,7 @@ Implemented methods and properties are specified below:
 | nodeType |
 | parentElement|
 | parentNode |
+| remove |
 | removeAttribute |
 | removeEventListener |
 | setAttribute |
@@ -55,6 +56,7 @@ Implemented methods and properties are specified below:
 | nodeType |
 | parentElement|
 | parentNode |
+| remove |
 | textContent |
 
 | Text |
@@ -63,6 +65,7 @@ Implemented methods and properties are specified below:
 | nodeType |
 | parentElement|
 | parentNode |
+| remove |
 | textContent |
 
 ### Element child nodes:
