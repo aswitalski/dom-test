@@ -20,7 +20,7 @@ describe('Text', () => {
     assert.equal(text.nodeName, '#text');
   });
 
-  it('returns TEXT_NODE as node type', () => {
+  it('returns Node.TEXT_NODE as node type', () => {
 
     // given
     const text = document.createTextNode('comment');

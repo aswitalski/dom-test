@@ -88,7 +88,19 @@ describe('Named Node Map', () => {
       const namedNodeMap = new NamedNodeMap();
 
       // then
-      assert.equal(namedNodeMap.item(0), undefined);
+      assert.equal(namedNodeMap[0], undefined);
+    });
+
+    it('supports symbol property', () => {
+
+      // given
+      const symbol = Symbol.for('present');
+      const namedNodeMap = new NamedNodeMap();
+      namedNodeMap[symbol] = 'exists';
+
+      // then
+      assert.equal(namedNodeMap[symbol], 'exists');
+      assert.equal(namedNodeMap[Symbol.for('absent')], undefined);
     });
   });
 

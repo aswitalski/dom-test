@@ -19,20 +19,27 @@ class CSSStyleDeclaration extends AbstractMap {
           if (prop === String(index)) {
             return Array.from(target.map_.keys())[index];
           }
-          const name = lowerDash(prop);
-          const value = target.map_.get(name);
-          if (value) {
-            return value;
+          if (SUPPORTED_STYLES.includes(prop)) {
+            const name = lowerDash(prop);
+            const value = target.map_.get(name);
+            return value ? value : '';
+          }
+          if (SUPPORTED_STYLES.map(lowerDash).includes(prop)) {
+            const name = prop;
+            const value = target.map_.get(name);
+            return value ? value : '';
           }
         }
-        return target[prop] || '';
+        return target[prop];
       },
-      set: (target, name, value) => {
-        if (SUPPORTED_STYLES.includes(name)) {
-          const lowerDashName = lowerDash(name);
-          target.setProperty(lowerDashName, value);
+      set: (target, prop, value) => {
+        if (SUPPORTED_STYLES.includes(prop)) {
+          const name = lowerDash(prop);
+          target.setProperty(name, value);
+        } else if (SUPPORTED_STYLES.map(lowerDash).includes(prop)) {
+          target.setProperty(prop, value);
         } else {
-          target[name] = value;
+          target[prop] = value;
         }
         return true;
       },

@@ -17,7 +17,21 @@ describe('CSS Style Declaration', () => {
       assert.equal(style.length, 0);
     });
 
-    it('supports knows property name', () => {
+    it('supports symbol property', () => {
+
+      // given
+      const prop = Symbol.for('property');
+      const style = new CSSStyleDeclaration();
+
+      // when
+      style[prop] = 10;
+      style.setProperty('backgroundColor', 'red');
+
+      // then
+      assert.equal(style.length, 0);
+    });
+
+    it('supports known property name', () => {
 
       // given
       const style = new CSSStyleDeclaration();
@@ -192,10 +206,17 @@ describe('CSS Style Declaration', () => {
       // when
       style.setProperty('font-size', '2rem');
       style.setProperty('color', 'white');
+      style.backgroundColor = 'green';
 
       // then
       assert.equal(style.fontSize, '2rem');
       assert.equal(style.color, 'white');
+
+      assert.equal(style.backgroundColor, 'green');
+      assert.equal(style['background-color'], 'green');
+
+      assert.equal(style.boxShadow, '');
+      assert.equal(style['font-weight'], '');
     });
   });
 
@@ -209,10 +230,16 @@ describe('CSS Style Declaration', () => {
       // when
       style.width = '800px';
       style.height = '600px';
+      style.animationDelay = '0.6s';
+      style['box-shadow'] = 'inherit';
+      style['line-height'] = '6em';
 
       // then
       assert.equal(style.getPropertyValue('width'), '800px');
       assert.equal(style.getPropertyValue('height'), '600px');
+      assert.equal(style.getPropertyValue('animation-delay'), '0.6s');
+      assert.equal(style.getPropertyValue('box-shadow'), 'inherit');
+      assert.equal(style.getPropertyValue('line-height'), '6em');
     });
   });
 });

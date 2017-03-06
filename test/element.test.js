@@ -20,7 +20,7 @@ describe('Element', () => {
     assert.equal(element.nodeName, 'DIV');
   });
 
-  it('returns ELEMENT_NODE as node type', () => {
+  it('returns Node.ELEMENT_NODE as node type', () => {
 
     // given
     const divElement = document.createElement('div');
@@ -591,6 +591,24 @@ describe('Element', () => {
   });
 
   describe('remove event listener', () => {
+
+    it('ignores unknown event listeners', () => {
+
+      // given
+      const element = document.createElement('input');
+      const onChange = () => {};
+      const listener = () => {};
+      element.addEventListener('change', onChange);
+
+      // when
+      element.removeEventListener('click', listener);
+      element.removeEventListener('change', listener);
+
+      // then
+      assert.deepEqual(element.eventListeners_, {
+        change: [onChange],
+      });
+    });
 
     it('removes a single event listener', () => {
 

@@ -20,7 +20,7 @@ describe('Comment', () => {
     assert.equal(comment.nodeName, '#comment');
   });
 
-  it('returns COMMENT_NODE as node type', () => {
+  it('returns Node.COMMENT_NODE as node type', () => {
 
     // given
     const comment = document.createComment('comment');
