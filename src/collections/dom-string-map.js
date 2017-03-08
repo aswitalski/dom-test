@@ -23,6 +23,9 @@ class DOMStringMap {
       },
       set: ProxyUtils.setDataAttribute(attributes),
       deleteProperty: ProxyUtils.deleteDataAttribute(attributes),
+      ownKeys: ProxyUtils.getMapKeys,
+      has: ProxyUtils.hasKeyInMap,
+      getOwnPropertyDescriptor: ProxyUtils.getMapPropertyDescriptor,
     })
   }
 

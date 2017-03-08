@@ -28,6 +28,23 @@ class ProxyUtils {
     };
   }
 
+  static get getMapKeys() {
+    return target => Array.from(target.map_.keys());
+  }
+
+  static get hasKeyInMap() {
+    return (target, prop) => target.map_.has(prop);
+  }
+
+  static get getMapPropertyDescriptor() {
+    return (target, prop) => target.map_.has(prop) ? {
+      value: target.map_.get(prop),
+      writable: true,
+      enumerable: true,
+      configurable: true,
+    } : undefined;
+  }
+
   static setDataAttribute(attributes) {
     return (target, prop, value) => {
       if (typeof value === 'symbol') {
