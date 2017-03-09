@@ -11,6 +11,7 @@ class NamedNodeMap extends AbstractMap {
     super();
     return new Proxy(this, {
       get: ProxyUtils.getByNameAndIndex,
+      // ownKeys: ProxyUtils.getIndices,
     })
   }
 

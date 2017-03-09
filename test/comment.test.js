@@ -11,6 +11,23 @@ describe('Comment', () => {
     assert.equal(comment.textContent, 'some comment');
   });
 
+  it('converts constructor argument to string', () => {
+    assert.equal(document.createComment(50).textContent, '50');
+    assert.equal(document.createComment(null).textContent, 'null');
+    assert.equal(document.createComment(undefined).textContent, 'undefined');
+  });
+
+  it('throws an exception for symbol value', () => {
+
+    // given
+    const comment = document.createComment('');
+
+    // then
+    assert.throws(() => {
+      comment.textContent = Symbol.for('nice try');
+    }, TypeError, /Cannot convert a Symbol value to a string/);
+  });
+
   it('returns #comment as node name', () => {
 
     // given

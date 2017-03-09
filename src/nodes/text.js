@@ -1,11 +1,6 @@
-const Node = require('./node.js');
+const AbstractTextNode = require('./abstract-text-node.js');
 
-class Text extends Node {
-
-  constructor(text) {
-    super();
-    this.textContent = text;
-  }
+class Text extends AbstractTextNode {
 
   get nodeName() {
     return '#text';
