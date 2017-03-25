@@ -218,6 +218,7 @@ const SUPPORTED_STYLES = [
   'paintOrder',
   'perspective',
   'perspectiveOrigin',
+  'placeContent',
   'pointerEvents',
   'position',
   'quotes',
@@ -394,7 +395,7 @@ const SUPPORTED_STYLES = [
   'x',
   'y',
   'zIndex',
-  'zoo',
+  'zoom'
 ];
 
 module.exports = SUPPORTED_STYLES;
