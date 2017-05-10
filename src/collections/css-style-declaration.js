@@ -43,6 +43,15 @@ class CSSStyleDeclaration extends AbstractMap {
         }
         return true;
       },
+      ownKeys: target => SUPPORTED_STYLES,
+      has: (target, prop) => SUPPORTED_STYLES.includes(prop),
+      getOwnPropertyDescriptor: (target, prop) =>
+        (SUPPORTED_STYLES.includes(prop) ? {
+          value: target[SUPPORTED_STYLES] || '',
+          writable: true,
+          enumerable: true,
+          configurable: true,
+        } : undefined),
     });
   }
 

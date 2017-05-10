@@ -2,6 +2,19 @@ require('../src/document.js');
 
 describe('HTML Document', () => {
 
+  describe('defines', () => {
+
+    it('document.documentElement', () => {
+      assert(document.documentElement);
+      assert(document.documentElement.tagName, 'HTML');
+    });
+
+    it('document.body', () => {
+      assert(document.body);
+      assert(document.body.tagName, 'BODY');
+    });
+  })
+
   describe('=> createElement()', () => {
 
     it('creates an element', () => {
@@ -13,7 +26,8 @@ describe('HTML Document', () => {
       assert(div instanceof Element);
       assert.equal(div.tagName, 'DIV');
       assert.deepEqual(div.dataset, {});
-      assert.deepEqual(div.style, {});
+      assert(Object.keys(div.style).includes('color'));
+      assert(Object.keys(div.style).includes('backgroundColor'));
       assert.deepEqual(Array.from(div.childNodes), []);
     });
   });

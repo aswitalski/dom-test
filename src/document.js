@@ -23,3 +23,6 @@ global.document = class HTMLDocument {
     return new Text(text);
   }
 };
+
+document.documentElement = document.createElement('html');
+document.body = document.createElement('body');
