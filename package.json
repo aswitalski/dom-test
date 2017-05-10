@@ -1,6 +1,6 @@
 {
   "name": "dom-test",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "A subset of DOM Level 4 model for tests in Node.js",
   "main": "index.js",
   "scripts": {
