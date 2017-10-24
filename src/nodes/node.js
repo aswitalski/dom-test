@@ -13,6 +13,12 @@ class Node {
     }
   }
 
+  replaceWith(node) {
+    if (this.parentNode) {
+      this.parentNode.replaceChild(node, this);
+    }
+  }
+
   get parentElement() {
     if (this.parentNode && this.parentNode.constructor === Element) {
       return this.parentNode;

@@ -38,6 +38,41 @@ describe('Node', () => {
     })
   });
 
+  describe('replace with', () => {
+
+    it('replaces the element with another one', () => {
+
+      // given
+      const node = document.createTextNode('text');
+      const anotherNode = document.createTextNode('another');
+
+      const element = document.createElement('span');
+      element.appendChild(node);
+
+      // when
+      node.replaceWith(anotherNode);
+
+      // then
+      assert.equal(element.hasChildNodes(), true);
+      assert.equal(element.childNodes[0], anotherNode);
+
+      assert.equal(node.parentNode, null);
+      assert.equal(anotherNode.parentNode, element);
+    });
+
+    it('ignores the call if not attached', () => {
+
+      // given
+      const node = document.createComment('comment');
+
+      // when
+      node.replaceWith(document.createElement('span'));
+
+      // then
+      assert.equal(node.parentNode, null);
+    })
+  });
+
   describe('parent node', () => {
 
     it('returns parent node', () => {
