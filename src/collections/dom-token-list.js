@@ -37,18 +37,18 @@ class DOMTokenList extends AbstractList {
     return enabled ? this.add(name) : this.remove(name);
   }
 
-  set value(names) {
+  set value(names = '') {
     this.array_.length = 0;
-    names
-      .split(' ')
-      .forEach(name => {
-        this.add(name);
-      });
+    if (!names) {
+      return;
+    }
+    names.split(' ').forEach(name => {
+      this.add(name);
+    });
   }
 
   get value() {
-    return this.array_
-      .join(' ');
+    return this.array_.join(' ');
   }
 }
 
