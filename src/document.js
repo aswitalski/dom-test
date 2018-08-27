@@ -2,8 +2,13 @@ global.Node = require('./nodes/node.js');
 
 global.Attr = require('./nodes/attr.js');
 global.Comment = require('./nodes/comment.js');
-global.Element = require('./nodes/element.js');
 global.Text = require('./nodes/text.js');
+
+global.Element = require('./nodes/element.js');
+global.HTMLElement = require('./nodes/html-element.js');
+
+global.DocumentFragment = require('./nodes/document-fragment.js');
+global.ShadowRoot = require('./nodes/shadow-root.js');
 
 global.document = class HTMLDocument {
 

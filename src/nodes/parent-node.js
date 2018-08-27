@@ -3,8 +3,9 @@ const NodeList = require('../collections/node-list.js');
 
 const assertIsNode = (node, method, index) => {
   if (node && !(node instanceof Node)) {
-    throw new TypeError(`Failed to execute '${method}' on 'Node': ` +
-      `parameter ${index} is not of type 'Node'.`);
+    throw new TypeError(
+        `Failed to execute '${method}' on 'Node': ` +
+        `parameter ${index} is not of type 'Node'.`);
   }
 };
 
@@ -53,8 +54,9 @@ class ParentNode extends Node {
       node.parentNode = this;
       this.childNodes.array_.splice(index, 0, node);
     } else {
-      throw new Error('The node before which the new node is to be inserted ' +
-        'is not a child of this node.');
+      throw new Error(
+          'The node before which the new node is to be inserted ' +
+          'is not a child of this node.');
     }
   }
 

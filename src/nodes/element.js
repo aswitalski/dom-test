@@ -8,11 +8,21 @@ const NamedNodeMap = require('../collections/named-node-map.js');
 
 const eventListenersKey = Symbol('event-listeners');
 
+const inferName = ElementClass => {
+  for (const [customElementName, CustomElementClass] of customElements.registry_
+           .entries()) {
+    if (ElementClass === CustomElementClass) {
+      return customElementName;
+    }
+  }
+  throw new Error('Element name is mandatory!');
+};
+
 class Element extends ParentNode {
 
   constructor(name) {
     super();
-    this.tagName = name.toUpperCase();
+    this.tagName = (name || inferName(this.constructor)).toUpperCase();
     this.children = new HTMLCollection(this.childNodes.array_);
     this.attributes = new NamedNodeMap();
     this.dataset = new DOMStringMap(this.attributes);
@@ -81,6 +91,27 @@ class Element extends ParentNode {
 
   get eventListeners_() {
     return this[eventListenersKey];
+  }
+
+  remove() {
+    super.remove();
+    if (this.isCustomElement_ &&
+        typeof this.disconnectedCallback === 'function') {
+      this.disconnectedCallback();
+    }
+  }
+
+  get isCustomElement_() {
+    return this.tagName.includes('-');
+  }
+
+  attachShadow(options = {}) {
+    if (!['open', 'closed'].includes(options.mode)) {
+      throw new Error(
+          'Invalid value for member mode, must be "open" or "closed"!');
+    }
+    this.shadowRoot = new ShadowRoot(options.mode, this);
+    return this.shadowRoot;
   }
 }
 

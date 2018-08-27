@@ -37,6 +37,10 @@ class Node {
   static get COMMENT_NODE() {
     return 8;
   }
+
+  static get DOCUMENT_FRAGMENT_NODE() {
+    return 11;
+  }
 }
 
 module.exports = Node;

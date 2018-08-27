@@ -29,6 +29,51 @@ describe('Element', () => {
     assert.equal(divElement.nodeType, Node.ELEMENT_NODE);
   });
 
+  describe('=> Attach shadow', () => {
+
+    it('creates shadow root in "open" mode' ,() => {
+
+      // given
+      const element = document.createElement('section');
+
+      // when
+      const shadowRoot = element.attachShadow({
+        mode: 'open',
+      });
+
+      // then
+      assert(shadowRoot instanceof ShadowRoot);
+      assert.equal(shadowRoot.host, element);
+    });
+
+    it('creates shadow root in "closed" mode' ,() => {
+
+      // given
+      const element = document.createElement('div');
+
+      // when
+      const shadowRoot = element.attachShadow({
+        mode: 'closed',
+      });
+
+      // then
+      assert(shadowRoot instanceof ShadowRoot);
+      assert.equal(shadowRoot.host, element);
+    });
+
+    it('throws an error for invalid member mode', () => {
+
+      // given
+      const element = document.createElement('section');
+
+      // then
+      assert.throws(() => element.attachShadow());
+      assert.throws(() => element.attachShadow({
+        mode: 'unknown',
+      }));
+    });
+  });
+
   describe('append child', () => {
 
     it('adds child nodes', () => {
