@@ -83,6 +83,15 @@ class ParentNode extends Node {
       throw new Error('The node to be removed is not a child of this node.');
     }
   }
+
+  get textContent() {
+    return [...this.childNodes].map(node => node.textContent).join('');
+  }
+
+  set textContent(text) {
+    this.childNodes = new NodeList();
+    this.childNodes.array_.push(document.createTextNode(text));
+  }
 }
 
 module.exports = ParentNode;

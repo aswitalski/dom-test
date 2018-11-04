@@ -725,4 +725,53 @@ describe('Element', () => {
       assert.equal(element.className, 'c1 c2 c3');
     });
   });
+
+  describe('text content', () => {
+
+    it('sets text content on an empty element', () => {
+
+      // given
+      const element = document.createElement('span');
+
+      // when
+      element.textContent = 'test';
+
+      // then
+      assert.equal(element.textContent, 'test');
+    });
+
+    it('sets text content on an empty with text node', () => {
+
+      // given
+      const element = document.createElement('span');
+      element.appendChild(document.createTextNode('xxx'));
+
+      // then
+      assert.equal(element.textContent, 'xxx');
+
+      // when
+      element.textContent = 'test';
+
+      // then
+      assert.equal(element.textContent, 'test');
+    });
+
+    it('sets text content on element with children', () => {
+
+      // given
+      const main = document.createElement('main');
+      const section = document.createElement('section');
+      section.textContent = 'section';
+      main.appendChild(section);
+
+      // then
+      assert.equal(main.textContent, 'section');
+
+      // when
+      main.textContent = 'test';
+
+      // then
+      assert.equal(main.textContent, 'test');
+    });
+  });
 });
